@@ -23,8 +23,9 @@
 </p>
 
 
-Telegram Bot to store Posts and Documents and it can Access by Special Links.
-I Guess This Will Be Usefull For Many People.....😇. 
+This Is AnimeMax Official Bot 
+@Anime_Hub_7
+
 
 ##
 
