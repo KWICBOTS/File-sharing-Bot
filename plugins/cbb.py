@@ -11,8 +11,8 @@ async def cb_handler(client: Bot, query: CallbackQuery):
     if data == "about":
         await query.message.edit_text(
             text = f"<b>○ Creator : <a href='tg://user?id={OWNER_ID}'>This Person</a>\n○ Language : <code>Python3</code>\n○ Library : <a href='https://docs.pyrogram.org/'>Pyrogram asyncio {__version__}</a>\n○ Source Code : <a href='https://github.com/KWICBOTS/File-sharing-Bot'>Click here</a>\n○ Channel : @darkmarsel\n○ Support Group : @darkmarsel8</b>",
-            disable_web_page_preview = False,
-            reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Channel", url=f'https://t.me/+l_5oMi-MXmVkOTM9')]])                [
+            disable_web_page_preview = True,
+            reply_markup = InlineKeyboardMarkup               [
                     [
                         InlineKeyboardButton("🔒 Close", callback_data = "close")
                     ]
