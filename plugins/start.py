@@ -173,6 +173,29 @@ async def send_text(client: Bot, message: Message):
         for chat_id in query:
             try:
                 await broadcast_msg.copy(chat_id)
+    )
+
+@Bot.on_message(filters.command('users') & filters.private & filters.user(ADMINS))
+async def get_users(client: Bot, message: Message):
+    msg = await client.send_message(chat_id=message.chat.id, text=WAIT_MSG)
+    users = await full_userbase()
+    await msg.edit(f"{len(users)} users are using this bot")
+
+@Bot.on_message(filters.private & filters.command('broadcast') & filters.user(ADMINS))
+async def send_text(client: Bot, message: Message):
+    if message.reply_to_message:
+        query = await full_userbase()
+        broadcast_msg = message.reply_to_message
+        total = 0
+        successful = 0
+        blocked = 0
+        deleted = 0
+        unsuccessful = 0
+        
+        pls_wait = await message.reply("<i>Broadcasting Message.. This will Take Some Time</i>")
+        for chat_id in query:
+            try:
+                await broadcast_msg.copy(chat_id)
                 successful += 1
             except FloodWait as e:
                 await asyncio.sleep(e.x)
