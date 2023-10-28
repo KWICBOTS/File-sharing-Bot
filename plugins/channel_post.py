@@ -10,6 +10,19 @@ from config import ADMINS, CHANNEL_ID, DISABLE_CHANNEL_BUTTON
 from helper_func import encode
 
 @Bot.on_message(filters.private & filters.user(ADMINS) & ~filters.command(['start','users','broadcast','batch','genlink','stats']))
+#-----
+async def reply_forward(message: Message, file_id: int):
+    try:
+        await message.reply_text(
+            f"Files will be deleted in 30 minutes to avoid copyright issues. Please forward and save them.",
+            disable_web_page_preview=True,
+            quote=True
+        )
+    except FloodWait as e:
+        await asyncio.sleep(e.x)
+        await reply_forward(message, file_id)
+        
+#-----
 async def channel_post(client: Client, message: Message):
     reply_text = await message.reply_text("Please Wait...!", quote = True)
     try:
